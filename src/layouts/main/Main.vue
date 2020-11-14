@@ -97,9 +97,9 @@
 
             <div class="content-area__content">
 
-              <back-to-top bottom="5%" :right="$vs.rtl ? 'calc(100% - 2.2rem - 38px)' : '30px'" visibleoffset="500" v-if="!hideScrollToTop">
+              <!-- <back-to-top bottom="5%" :right="$vs.rtl ? 'calc(100% - 2.2rem - 38px)' : '30px'" visibleoffset="500" v-if="!hideScrollToTop">
                 <vs-button icon-pack="feather" icon="icon-arrow-up" class="shadow-lg btn-back-to-top" />
-              </back-to-top>
+              </back-to-top> -->
 
               <transition :name="routerTransition" mode="out-in">
                 <router-view @changeRouteTitle="changeRouteTitle" @setAppClasses="(classesStr) => $emit('setAppClasses', classesStr)" />
@@ -115,7 +115,7 @@
 
 
 <script>
-import BackToTop           from 'vue-backtotop'
+// import BackToTop           from 'vue-backtotop'
 import HNavMenu            from "@/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue"
 import navMenuItems        from "@/layouts/components/vertical-nav-menu/navMenuItems.js"
 import TheNavbarHorizontal from '@/layouts/components/navbar/TheNavbarHorizontal.vue'
@@ -126,7 +126,6 @@ import VNavMenu            from '@/layouts/components/vertical-nav-menu/Vertical
 
 export default {
   components: {
-    BackToTop,
     HNavMenu,
     TheFooter,
     TheNavbarHorizontal,

@@ -12,6 +12,7 @@ var items = [
     name: "Расчет",
     slug: "calculation",
     icon: "HomeIcon",
+    status: 'admin'
   },
   {
     url:null,
@@ -31,6 +32,12 @@ var items = [
         slug: "menuItem",
         status: 'admin'
       },
+      {
+        url: "/import-type",
+        name: "Типы прихода",
+        slug: "importType",
+        status: 'admin'
+      },
     ]
   },
 ]
@@ -43,6 +50,11 @@ items = items.map(el => {
       }
        return e
     })
+  }else{
+    if(el.status && user.status !== 'admin'){
+      return el.status === 'user'
+    }
+     return el
   }
   
   return el

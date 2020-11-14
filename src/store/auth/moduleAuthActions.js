@@ -1,6 +1,10 @@
 import router from '../../router';
 
 export default {
+    LOGOUT({commit}){
+        commit('UNSET_TOKEN')
+        router.push('/login')
+    },
     SIGNIN({commit}, context) {
         const data = {
             email: context.email,

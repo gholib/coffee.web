@@ -32,6 +32,11 @@ const router = new Router({
                 component: () => import('./views/menu/MenuItem.vue')
               },
               {
+                path: '/import-type',
+                name: 'importType', 
+                component: () => import('./views/import/ImportType.vue')
+              },
+              {
                 path: '/calculation',
                 name: 'calculation', 
                 component: () => import('./views/calculation/Calculation.vue')

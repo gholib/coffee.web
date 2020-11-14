@@ -25,15 +25,6 @@
         <!-- NAME -->
         <vs-input label="Название" v-model="dataName" class="mt-5 w-full" name="item-name" />
         <vs-input label="Цена" v-model="dataPrice" type="number" class="mt-5 w-full" name="item-name" />
-        <vs-input label="Себестоимость" v-model="dataCostPrice" type="number" class="mt-5 w-full" name="item-name" />
-        <vs-select label="Тип прихода" class="w-full mt-5" autocomplete
-                    data-vv-name="position"
-                    v-model="selected">
-            <vs-select-item v-for="(type,index) in importTypes"
-                            :value="type.id"
-                            :key="index"
-                            :text="type.display_name"/>
-        </vs-select>
       </div> 
       <div class="flex flex-wrap items-center p-6">
         <vs-button class="mr-6" @click="submitData">Сохранить</vs-button>
@@ -56,7 +47,7 @@ export default {
       type: Object,
       default: () => {},
     },
-    importTypes:{
+    branches:{
       required:true
     }
   },
@@ -70,8 +61,6 @@ export default {
       dataId: null,
       dataName: "",
       dataPrice:null,
-      selected: null,
-      dataCostPrice: null,
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
@@ -100,21 +89,19 @@ export default {
       this.dataId = null;
       this.dataName = "";
       this.dataPrice = null
-      this.dataCostPrice = null
-      this.selected = null
     },
     submitData() {
       this.$validator.validateAll().then((result) => {
         if (result) {
           if (this.data !== null && this.data.id >= 0) {
             this.$store
-              .dispatch("menu/UPDATE_MENU", this)
+              .dispatch("importType/UPDATE_IMPORT_TYPE", this)
               .catch((err) => {
                 console.error(err);
               });
           } else {
             this.$store
-              .dispatch("menu/CREATE_MENU", this)
+              .dispatch("importType/CREATE_IMPORT_TYPE", this)
               .catch((err) => {
                 console.error(err);
               });
@@ -133,12 +120,11 @@ export default {
         this.initValues();
         this.$validator.reset();
       } else {
-        const { id, price, display_name, cost_price, import_type_id } = JSON.parse(JSON.stringify(this.data));
+        const { id, price, display_name } = JSON.parse(JSON.stringify(this.data));
         this.dataId = id;
         this.dataName = display_name;
         this.dataPrice = price;
-        this.dataCostPrice = cost_price
-        this.selected = import_type_id
+        console.log('sss', price);
       }
     },
   },

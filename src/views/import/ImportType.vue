@@ -1,13 +1,12 @@
 <template>
   <div id="data-list-list-view" class="data-list-container">
 
-    <data-view-sidebar 
-        :import-types="importTypes"
-        :isSidebarActive="addNewDataSidebar" 
+    <data-view-sidebar :isSidebarActive="addNewDataSidebar" 
         @closeSidebar="toggleDataSidebar" 
-        :data="sidebarData" />
+        :data="sidebarData"
+        :branches="branches" />
 
-    <vs-table ref="table" multiple v-model="selected" pagination :max-items="itemsPerPage" search :data="categories">
+    <vs-table ref="table" multiple v-model="selected" pagination :max-items="itemsPerPage" search :data="importTypes">
 
       <div slot="header" class="flex flex-wrap-reverse items-center flex-grow justify-between">
 
@@ -37,7 +36,7 @@
           <!-- ADD NEW -->
           <div class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary" @click="addNewData">
               <feather-icon icon="PlusIcon" svgClasses="h-4 w-4" />
-              <span class="ml-2 text-base text-primary">Добавить меню</span>
+              <span class="ml-2 text-base text-primary">Добавить тип прихода</span>
           </div>
         </div>
 
@@ -101,7 +100,7 @@
 </template>
 
 <script>
-import DataViewSidebar from '../../components/menu/MenuItemSidebar'
+import DataViewSidebar from '../../components/import/ImportTypeSidebar'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -118,7 +117,7 @@ export default {
       addNewDataSidebar: false,
       sidebarData: {},
       deletedId:null,
-      importTypes:[]
+      branches:[],
     }
   },
   computed: {
@@ -129,7 +128,7 @@ export default {
       return 0
     },
     ...mapGetters({
-      categories: 'menu/getMenuItems'
+      importTypes: 'importType/getImportTypes'
     })
   },
   methods: {
@@ -139,7 +138,7 @@ export default {
         type: 'confirm',
         color: 'danger',
         title: `Подтвердите удаления`,
-        text: 'Безвозвратное удаление меню.',
+        text: 'Безвозвратное удаление прихода.',
         accept: this.deleteData,
         acceptText: "Подтвердить",
         cancelText: "Отменить"
@@ -150,7 +149,7 @@ export default {
       this.toggleDataSidebar(true)
     },
     deleteData () {
-      this.$store.dispatch('menu/DELETE_MENU', this).catch(err => { console.error(err) })
+      this.$store.dispatch('importType/DELETE_IMPORT_TYPE', this).catch(err => { console.error(err) })
     },
     editData (data) {
       this.sidebarData = data      
@@ -160,24 +159,19 @@ export default {
       this.addNewDataSidebar = val
     },
     deleteSelected() {
-      this.selectedId = this.selected.map(el => {
-        return el.id
-      })
-      if(this.selectedId.length > 0){
-        this.$store.dispatch('menu/DELETE_SELECTED_MENU', this).catch(err => { console.error(err) })
-      }
+      
     },
-    getImportTypes(){
-      this.$http.get('import-types').then(res => {
-        this.importTypes = res.data.importTypes
+    getBranches(){
+      this.$http.get('branches').then(res => {
+        this.branches = res.data.branches
       })
     }
   },
 
   mounted () {
     this.isMounted = true 
-    this.$store.dispatch('menu/GET_MENU_ITEMS', this).catch(err => { console.error(err) })
-    this.getImportTypes()
+    this.$store.dispatch('importType/GET_IMPORT_TYPES', this).catch(err => { console.error(err) })
+    this.getBranches()
   }
 }
 </script>

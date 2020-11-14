@@ -8,6 +8,7 @@ import actions from "./actions"
 
 import moduleAuth from './auth/moduleAuth.js'
 import menu from './menu'
+import importType from './import'
 Vue.use(Vuex)
 
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     actions,
     modules: {
         auth: moduleAuth,
-        menu
+        menu,
+        importType
     },
     // strict: process.env.NODE_ENV !== 'production'
 })

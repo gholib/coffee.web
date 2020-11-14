@@ -28,7 +28,7 @@
           <vs-divider class="my-6"></vs-divider>
           <div class="vx-row">
             <div v-for="(calc, index) in calculations" :key="index" class="vx-col w-1/2 mb-3">
-              <p><span class="dispay_name">
+              <p><span class="">
                   {{calc.display_name}}
                 </span>, кол-во {{calc.count}}, сумма {{calc.count*calc.price}}</p>
               <vs-progress class="block mt-1" :percent="calc.count" :color="colors[Math.floor(Math.random() * 5)]"></vs-progress>
@@ -38,11 +38,24 @@
             <br>
             <br>
           <vs-divider class="my-6"></vs-divider>
-            <div class="vx-col w-1/2 mb-3">
+            <div class="vx-col mb-3">
               <p><span class="dispay_name">
                   Итого: {{result}} сомони
                 </span></p>
               <vs-progress class="block mt-1" :percent="result/100" color="success"></vs-progress>
+            </div>
+            <div class="vx-col mb-3">
+              <p><span class="dispay_name">
+                  Себестоимость: {{costPrice}} сомони
+                </span></p>
+              <vs-progress class="block mt-1" :percent="costPrice/100" color="success"></vs-progress>
+            </div>
+            
+            <div class="vx-col mb-3">
+              <p><span class="dispay_name">
+                  Доход: {{result - costPrice}} сомони
+                </span></p>
+              <vs-progress class="block mt-1" :percent="costPrice/100" color="success"></vs-progress>
             </div>
           </div>
         </vx-card>
@@ -71,7 +84,15 @@ export default {
         if(this.calculations.length === 0) return 0
           let res = 0
           this.calculations.forEach(el => {
-              res += Number(el.price)*Number(el.count)
+              res += el.price*el.count
+          })
+        return res
+      },
+      costPrice(){
+        if(this.calculations.length === 0) return 0
+          let res = 0
+          this.calculations.forEach(el => {
+              res += el.cost_price*el.count
           })
         return res
       }

@@ -11,6 +11,8 @@ export default{
         let formData = {
             display_name:context.dataName,
             price: context.dataPrice,
+            cost_price: context.dataCostPrice,
+            import_type_id: context.selected
         }
         context.$http.post('menu-items', formData).then(response => {
             commit('SET_MENU', response.data.menuItem)
@@ -22,6 +24,8 @@ export default{
         let formData = {
             display_name:context.dataName,
             price: context.dataPrice,
+            cost_price: context.dataCostPrice,
+            import_type_id: context.selected
         }
         context.$http.post(`menu-items/${context.data.id}`, formData).then(response => {
             commit('UPDATE_MENU', response.data.menuItem)

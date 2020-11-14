@@ -4,7 +4,7 @@
           <p class="price">{{result}}(Сомони)</p>
           <p class="xl:w-3/4 lg:w-4/5 md:w-2/3 w-4/5 mx-auto text-white">
                 <vs-button @click="openConfirm" :disabled="summa.length === 0" color="success" type="filled">Оплатить</vs-button>
-                <vs-button @click="popupActive=true" class="ml-3 mt-3" color="warning" type="filled">Показать список</vs-button>
+                <vs-button @click="popupActive=true" :disabled="summa.length === 0"  class="ml-3 mt-3" color="warning" type="filled">Показать список</vs-button>
           </p>
         </vx-card>
         <vs-popup  title="Список продаж" :active.sync="popupActive">
@@ -77,5 +77,11 @@ export default {
         font-size: 30px;
         color: #fff;
         font-weight: bold;
+    }
+    .p-fixed{
+        position: fixed;
+        z-index: 999999999999999999999999999999;
+        opacity: 0.5;
+        width: 80%;
     }
 </style>
