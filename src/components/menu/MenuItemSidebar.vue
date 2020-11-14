@@ -117,9 +117,9 @@ export default {
         this.initValues();
         this.$validator.reset();
       } else {
-        const { id, price, name } = JSON.parse(JSON.stringify(this.data));
+        const { id, price, display_name } = JSON.parse(JSON.stringify(this.data));
         this.dataId = id;
-        this.dataName = name;
+        this.dataName = display_name;
         this.dataPrice = price;
         console.log('sss', price);
       }
