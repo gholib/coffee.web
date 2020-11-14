@@ -38,9 +38,7 @@
                                     <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Запомнить меня</vs-checkbox>
                                 </div>
 
-                                <vs-button ref="loadableButton"
-                                           id="button-with-loading"
-                                           :disabled="loading"
+                                <vs-button
                                            class="vs-con-loading__container"
                                            @click="login">
                                     Вход
