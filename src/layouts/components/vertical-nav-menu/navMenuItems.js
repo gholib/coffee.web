@@ -29,6 +29,7 @@ var items = [
         url: "/menu-item",
         name: "Меню",
         slug: "menuItem",
+        status: 'admin'
       },
     ]
   },
