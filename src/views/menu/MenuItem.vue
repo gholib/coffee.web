@@ -77,7 +77,7 @@
               </vs-td>
 
               <vs-td>
-                <p class="product-category">{{ tr.name }}</p>
+                <p class="product-category">{{ tr.display_name }}</p>
               </vs-td>
 
               <vs-td>
