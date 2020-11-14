@@ -39,7 +39,7 @@ export default {
 <style>
 .menu-button{
     width: 100%;
-    height: 6rem;
+    height: 8rem;
     text-transform: uppercase;
 }
 .display-name{
