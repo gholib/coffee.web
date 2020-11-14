@@ -2,7 +2,7 @@
     <vs-row>
         <vs-col  v-for="item in menuItems" :key="item.id" vs-w="6">
             <menu-item 
-                :color="colors[Math.floor(Math.random() * 5)]"
+                :color="colors[Math.floor(Math.random() * 4)]"
                 :display-name="item.display_name"
                 :price="item.price"
                 :menu-item-id="item.id" />
@@ -22,7 +22,6 @@ export default {
             colors:[
                 'primary',
                 'success',
-                'danger',
                 'warning',
                 'dark',
                 'rgb(62, 201, 214)',
