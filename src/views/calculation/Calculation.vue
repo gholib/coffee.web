@@ -94,6 +94,6 @@ export default {
 <style>
   .dispay_name{
     text-transform: uppercase;
-    color: red;
+    color: green;
   }
 </style>
