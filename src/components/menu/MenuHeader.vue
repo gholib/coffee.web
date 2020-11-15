@@ -81,7 +81,7 @@ export default {
     .p-fixed{
         position: fixed;
         top: 7rem;
-        z-index: 999999;
+        z-index: 999;
         opacity: 1;
         width: 90%;
     }
