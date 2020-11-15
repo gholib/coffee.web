@@ -32,6 +32,6 @@ export default {
 
 <style lang="scss">
     .top-10{
-        margin-top: 15rem;
+        margin-top: 18rem;
     }
 </style>
