@@ -41,6 +41,11 @@ const router = new Router({
                 name: 'calculation', 
                 component: () => import('./views/calculation/Calculation.vue')
               },
+              {
+                path: '/leftovers',
+                name: 'leftovers', 
+                component: () => import('./views/calculation/Leftover.vue')
+              },
             ],
         },
         {

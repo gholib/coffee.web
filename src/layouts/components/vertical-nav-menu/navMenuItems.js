@@ -8,11 +8,25 @@ var items = [
     icon: "HomeIcon",
   },
   {
-    url: "/calculation",
+    url: null,
     name: "Расчет",
     slug: "calculation",
-    icon: "HomeIcon",
-    status: 'admin'
+    icon: "LayersIcon",
+    status: 'admin',
+    submenu:[
+      {
+        url: "/calculation",
+        name: "Продажы",
+        slug: "sales",
+        status: 'admin'
+      },
+      {
+        url: "/leftovers",
+        name: "Остатки",
+        slug: "leftover",
+        status: 'admin'
+      },
+    ]
   },
   {
     url:null,

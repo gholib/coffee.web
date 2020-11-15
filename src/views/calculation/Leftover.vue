@@ -8,10 +8,13 @@
           <div class="vx-row">
             <div v-for="(calc, index) in calculations" :key="index" class="vx-col w-1/2 mb-3">
               <p><span class="">
-                  {{calc.display_name}}
-                </span>, кол-во {{calc.count}}, сумма {{calc.count*calc.price}}</p>
-              <vs-progress class="block mt-1" :percent="calc.count" :color="colors[Math.floor(Math.random() * 5)]"></vs-progress>
+                  {{calc.import_display_name}}
+                </span>, остаток {{calc.import_quantity - calc.count}}</p>
+                <p v-if="calc.import_quantity - calc.count < 0">Ошибка, что то ввели неправильно, свяжитесь с Голибом, +992880806776</p>
+              <vs-progress class="block mt-1" :percent="(calc.import_quantity - calc.count)/calc.import_quantity * 100" :color="colors[Math.floor(Math.random() * 5)]"></vs-progress>
             </div>
+          </div>
+          </vx-card>
       </div>
     </div>
 </template>
@@ -37,7 +40,7 @@ export default {
 
     methods:{
       getCalculation(){
-        this.$http.get('calculation').then(response => {
+        this.$http.get('leftovers').then(response => {
           this.calculations = response.data.calculations
         })
       }
