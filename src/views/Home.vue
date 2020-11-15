@@ -1,7 +1,9 @@
 <template>
   <div>
-	  <menu-header />
-	  <menu-items />
+	<menu-header />
+	<div class="mt-7 top-10">
+      <menu-items />
+    </div>
   </div>
 </template>
 
@@ -27,3 +29,9 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+    .top-10{
+        margin-top: 15rem;
+    }
+</style>

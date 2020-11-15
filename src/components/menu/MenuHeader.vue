@@ -1,6 +1,6 @@
 <template>
     <div class="vx-col w-full mb-base">
-        <vx-card slot="no-body" class="text-center bg-primary-gradient greet-user">
+        <vx-card slot="no-body" class="text-center bg-primary-gradient greet-user p-fixed">
           <p class="price">{{result}}(Сомони)</p>
           <p class="xl:w-3/4 lg:w-4/5 md:w-2/3 w-4/5 mx-auto text-white">
                 <vs-button @click="openConfirm" :disabled="summa.length === 0" color="success" type="filled">Оплатить</vs-button>
@@ -80,8 +80,9 @@ export default {
     }
     .p-fixed{
         position: fixed;
-        z-index: 999999999999999999999999999999;
-        opacity: 0.5;
-        width: 80%;
+        top: 7rem;
+        z-index: 999999;
+        opacity: 1;
+        width: 90%;
     }
 </style>
