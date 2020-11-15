@@ -2,8 +2,9 @@ export default{
     GET_IMPORT_TYPES({commit}, context){
         context.$vs.loading({color: 'rgb(228, 222, 37)' })
         context.$http.get('import-types').then(response => {
-            context.$vs.loading.close()
             commit('SET_IMPORT_TYPES', response.data.importTypes)
+        }).finally(() => {
+            context.$vs.loading.close()
         })
     },
     CREATE_IMPORT_TYPE({commit}, context){
@@ -14,6 +15,7 @@ export default{
         }
         context.$http.post('import-types', formData).then(response => {
             commit('SET_IMPORT_TYPE', response.data.importType)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },
@@ -25,6 +27,7 @@ export default{
         }
         context.$http.post(`import-types/${context.data.id}`, formData).then(response => {
             commit('UPDATE_IMPORT_TYPE', response.data.importType)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },
@@ -32,6 +35,7 @@ export default{
         context.$vs.loading({color: 'rgb(228, 222, 37)' })
         context.$http.delete(`import-types/${context.deletedId}`).then(() => {
             commit('DELETE_IMPORT_TYPE', context.deletedId)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },

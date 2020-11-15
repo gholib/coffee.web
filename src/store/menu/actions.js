@@ -2,8 +2,9 @@ export default{
     GET_MENU_ITEMS({commit}, context){
         context.$vs.loading({color: 'rgb(228, 222, 37)' })
         context.$http.get('menu-items').then(response => {
-            context.$vs.loading.close()
             commit('SET_MENU_ITEMS', response.data.menuItems)
+        }).finally(() => {
+            context.$vs.loading.close()
         })
     },
     CREATE_MENU({commit}, context){
@@ -16,6 +17,7 @@ export default{
         }
         context.$http.post('menu-items', formData).then(response => {
             commit('SET_MENU', response.data.menuItem)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },
@@ -29,6 +31,7 @@ export default{
         }
         context.$http.post(`menu-items/${context.data.id}`, formData).then(response => {
             commit('UPDATE_MENU', response.data.menuItem)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },
@@ -36,6 +39,7 @@ export default{
         context.$vs.loading({color: 'rgb(228, 222, 37)' })
         context.$http.delete(`menu-items/${context.deletedId}`).then(() => {
             commit('DELETE_MENU', context.deletedId)
+        }).finally(() => {
             context.$vs.loading.close()
         })
     },
