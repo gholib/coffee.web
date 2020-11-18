@@ -11,7 +11,7 @@
                   {{calc.import_display_name}}
                 </span>, остаток {{calc.import_quantity - getSalesCount(calc.import_name)}}</p>
                 <p v-if="calc.import_quantity - getSalesCount(calc.import_name) < 0">Ошибка, что то ввели неправильно, свяжитесь с Голибом, +992880806776</p>
-              <vs-progress class="block mt-1" :percent="(calc.import_quantity - calc.count)/calc.import_quantity * 100" :color="colors[Math.floor(Math.random() * 5)]"></vs-progress>
+              <vs-progress class="block mt-1" :percent="(calc.import_quantity - getSalesCount(calc.import_name))/calc.import_quantity * 100" :color="colors[Math.floor(Math.random() * 5)]"></vs-progress>
             </div>
           </div>
           </vx-card>
