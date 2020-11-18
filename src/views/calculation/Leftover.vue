@@ -47,7 +47,11 @@ export default {
         })
       },
       getSalesCount(importName){
-        return this.sales.filter(el => el.import_name === importName)[0].count
+        let sale = this.sales.filter(el => el.import_name === importName)
+        if(sale.length > 0){
+          return sale[0].count
+        }
+        return 0
       }
     },
 
